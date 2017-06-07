@@ -1,0 +1,51 @@
+//   Chromis POS - The New Face of Open Source POS 
+//   Copyright (c) (c) 2015-2016 2016 Chromis , previous uniCenta & Openbravo POS works   
+//
+//   This file is part of chromis oPOS
+//
+//   Chromis POS is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Chromis POS is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Chromis POS.  If not, see <http://www.gnu.org/licenses/>.
+
+// added by g.irura @ 27/03/2010. If a retailer issues item which is 
+// taxable but gets back a refund, means when this happens, the tax 
+// effected initially is deducted. all taxes occur in taxlines.amount 
+// where the sum is obtained. It is therefore important to show on this 
+// report the taxes that were charged on a receipt but later refunded
+
+report = new uk.chromis.pos.reports.PanelReportBean();
+
+report.setTitleKey("Menu.SaleTaxes2");
+report.setReport("/uk/chromis/reports/saletaxes2");
+report.setResourceBundle("uk/chromis/reports/saletaxes2_messages");
+
+report.setSentence("SELECT RDATE, FECHA, TAXNAME, TAXAMOUNT, TAXBASE, NUM_FACTURA, TIPO_FACTURA FROM ( SELECT RECEIPTS.DATENEW AS RDATE, RECEIPTS.DATENEW AS FECHA,  TAXES.NAME AS TAXNAME, TAXLINES.AMOUNT AS TAXAMOUNT, TAXLINES.BASE AS TAXBASE, CAST(RECEIPTS.ATTRIBUTES AS CHAR(10000) CHARACTER SET utf8)  AS PROPIEDADES, EXTRACTVALUE((SELECT PROPIEDADES), \"//entry[@key='num_factura']\") AS NUM_FACTURA, EXTRACTVALUE((SELECT PROPIEDADES), \"//entry[@key='tipo_factura']\") AS TIPO_FACTURA, TAXLINES.TAXID as TAXLINESID, RECEIPTS.ID AS RECID, TAXLINES.RECEIPT AS TAXREC, TAXES.ID AS TAXESID FROM RECEIPTS, TAXLINES, TAXES) AS X WHERE (TIPO_FACTURA = \"simplificada\" OR TIPO_FACTURA = \"devolucion\") AND RECID = TAXREC AND TAXLINESID = TAXESID AND ?(QBF_FILTER) ORDER BY FECHA");
+
+report.addParameter("RDATE");
+report.addParameter("RDATE");
+
+paramdates = new uk.chromis.pos.reports.JParamsDatesInterval();
+
+paramdates.setStartDate(uk.chromis.beans.DateUtils.getToday());
+paramdates.setEndDate(uk.chromis.beans.DateUtils.getTodayMinutes());
+
+report.addQBFFilter(paramdates);
+
+report.addField("RDATE", uk.chromis.data.loader.Datas.TIMESTAMP);
+report.addField("FECHA", uk.chromis.data.loader.Datas.TIMESTAMP);
+report.addField("TAXNAME", uk.chromis.data.loader.Datas.STRING);
+report.addField("TAXAMOUNT", uk.chromis.data.loader.Datas.DOUBLE);
+report.addField("TAXBASE", uk.chromis.data.loader.Datas.DOUBLE);
+report.addField("NUM_FACTURA", uk.chromis.data.loader.Datas.STRING);
+report.addField("TIPO_FACTURA", uk.chromis.data.loader.Datas.STRING);
+
+report;

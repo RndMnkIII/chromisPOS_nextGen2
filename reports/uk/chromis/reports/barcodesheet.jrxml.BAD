@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-08-19T20:23:12 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="barcodesheet" columnCount="5" printOrder="Horizontal" pageWidth="595" pageHeight="841" columnWidth="107" leftMargin="28" rightMargin="28" topMargin="32" bottomMargin="28" uuid="05015e98-9966-4138-b103-b2a17988f1ce">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<queryString>
+		<![CDATA[SELECT reference, code FROM products where reference = 'koochie';]]>
+	</queryString>
+	<field name="REFERENCE" class="java.lang.String"/>
+	<field name="CODE" class="java.lang.String"/>
+	<field name="CODETYPE" class="java.lang.String"/>
+	<sortField name="REFERENCE"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<elementGroup>
+				<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+					<reportElement key="image-1" x="0" y="17" width="107" height="40" uuid="42a13b6b-4075-4581-8f7e-6ae1abb26313"/>
+					<imageExpression><![CDATA[(($F{CODETYPE}.equals("EAN13") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN13($F{CODE}) :
+    ($F{CODETYPE}.equals("EAN-8") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN8($F{CODE}) :
+        ($F{CODETYPE}.equals("UPC-A") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCA($F{CODE}) :
+            ($F{CODETYPE}.equals("UPC-E") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE}) :
+                ($F{CODETYPE}.equals("CODE128") ? uk.chromis.pos.util.BarcodeImage.getBarcode128($F{CODE}) :
+                    uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE})
+                )
+            )
+        )
+    )
+))]]></imageExpression>
+				</image>
+			</elementGroup>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="1" y="1" width="104" height="15" uuid="98956938-7779-4293-ab72-62d4fb459a7a"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="108" y="1" width="104" height="15" uuid="27c62889-c731-4c4e-9537-b612ffd74485"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCE}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="image-1" x="107" y="17" width="107" height="40" uuid="ca744105-2df2-4b2a-9914-b935a9f0fe62"/>
+				<imageExpression><![CDATA[(($F{CODETYPE}.equals("EAN13") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN13($F{CODE}) :
+    ($F{CODETYPE}.equals("EAN-8") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN8($F{CODE}) :
+        ($F{CODETYPE}.equals("UPC-A") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCA($F{CODE}) :
+            ($F{CODETYPE}.equals("UPC-E") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE}) :
+                ($F{CODETYPE}.equals("CODE128") ? uk.chromis.pos.util.BarcodeImage.getBarcode128($F{CODE}) :
+                    uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE})
+                )
+            )
+        )
+    )
+))]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="image-1" x="214" y="17" width="107" height="40" uuid="b7d61f37-3aab-4c21-b5ea-e44465863827"/>
+				<imageExpression><![CDATA[(($F{CODETYPE}.equals("EAN13") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN13($F{CODE}) :
+    ($F{CODETYPE}.equals("EAN-8") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN8($F{CODE}) :
+        ($F{CODETYPE}.equals("UPC-A") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCA($F{CODE}) :
+            ($F{CODETYPE}.equals("UPC-E") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE}) :
+                ($F{CODETYPE}.equals("CODE128") ? uk.chromis.pos.util.BarcodeImage.getBarcode128($F{CODE}) :
+                    uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE})
+                )
+            )
+        )
+    )
+))]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="215" y="1" width="104" height="15" uuid="41b4eb72-9ad7-4991-892f-0191c647bcb7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCE}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="image-1" x="321" y="17" width="107" height="40" uuid="ea238d92-915b-45b7-a935-2cfa61a75c5e"/>
+				<imageExpression><![CDATA[(($F{CODETYPE}.equals("EAN13") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN13($F{CODE}) :
+    ($F{CODETYPE}.equals("EAN-8") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN8($F{CODE}) :
+        ($F{CODETYPE}.equals("UPC-A") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCA($F{CODE}) :
+            ($F{CODETYPE}.equals("UPC-E") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE}) :
+                ($F{CODETYPE}.equals("CODE128") ? uk.chromis.pos.util.BarcodeImage.getBarcode128($F{CODE}) :
+                    uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE})
+                )
+            )
+        )
+    )
+))]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="image-1" x="428" y="17" width="107" height="40" uuid="247a8273-372e-4c6c-a2ec-31f3e07adf8c"/>
+				<imageExpression><![CDATA[(($F{CODETYPE}.equals("EAN13") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN13($F{CODE}) :
+    ($F{CODETYPE}.equals("EAN-8") ? uk.chromis.pos.util.BarcodeImage.getBarcodeEAN8($F{CODE}) :
+        ($F{CODETYPE}.equals("UPC-A") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCA($F{CODE}) :
+            ($F{CODETYPE}.equals("UPC-E") ? uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE}) :
+                ($F{CODETYPE}.equals("CODE128") ? uk.chromis.pos.util.BarcodeImage.getBarcode128($F{CODE}) :
+                    uk.chromis.pos.util.BarcodeImage.getBarcodeUPCE($F{CODE})
+                )
+            )
+        )
+    )
+))]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="322" y="1" width="104" height="15" uuid="916c2956-0fa7-446c-87ad-50e9f7fdb13b"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="429" y="1" width="104" height="15" uuid="81f91d23-daa4-43fe-b893-77d33aa3f573"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REFERENCE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
