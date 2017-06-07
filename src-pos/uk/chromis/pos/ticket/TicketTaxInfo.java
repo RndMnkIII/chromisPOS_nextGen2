@@ -67,7 +67,7 @@ public class TicketTaxInfo {
         subtotalBD = subtotalBD.add(dValueBD);
         BigDecimal taxRateBD=BigDecimal.valueOf(tax.getRate()).setScale(8,RoundingMode.HALF_UP);
         taxtotalBD = subtotalBD.multiply(taxRateBD).setScale(8,RoundingMode.HALF_UP);
-        System.out.println("*** Add: "+subtotalBD.doubleValue()+ " Redondeado: " + subtotalBD.setScale(2,RoundingMode.HALF_UP).doubleValue());
+        //System.out.println("*** Add: "+subtotalBD.doubleValue()+ " Redondeado: " + subtotalBD.setScale(2,RoundingMode.HALF_UP).doubleValue());
     }
     
     /**
